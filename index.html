@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brauer Design — Creative Studio, Minneapolis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0b0b0b;
+  --white:#f5f3ef;
+  --off:#c8c5c0;
+  --dim:#918e89;
+  --rule:rgba(245,243,239,0.08);
+  --pop:#ff4d2d;
+  --pop-dim:rgba(255,77,45,0.1);
+  --sans:'Plus Jakarta Sans',system-ui,sans-serif;
+  --mono:'Space Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--pop);color:var(--white)}
+
+/* CURSOR FOLLOWER */
+.cursor{position:fixed;width:12px;height:12px;border:1.5px solid var(--pop);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width 0.3s,height 0.3s,border-color 0.3s;mix-blend-mode:difference}
+.cursor.grow{width:50px;height:50px;border-color:var(--white)}
+
+/* LOADER */
+.loader{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem}
+.loader.go{animation:loaderOut 0.8s ease 0.6s forwards}
+@keyframes loaderOut{to{clip-path:inset(0 0 100% 0);opacity:0;visibility:hidden;pointer-events:none}}
+.loader-word{font-size:clamp(2rem,5vw,4rem);font-weight:800;letter-spacing:-0.03em;opacity:0;transform:translateY(20px);animation:fi 0.5s ease forwards 0.1s}
+.loader-line{width:40px;height:2px;background:var(--pop);opacity:0;animation:fi 0.4s ease forwards 0.3s}
+@keyframes fi{to{opacity:1;transform:translateY(0)}}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 clamp(1.5rem,4vw,3.5rem);height:60px;display:flex;justify-content:space-between;align-items:center;background:rgba(11,11,11,0.8);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px)}
+.nav-logo{font-weight:700;font-size:0.9rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--white);text-decoration:none}
+.nav-r{display:flex;align-items:center;gap:2.5rem}
+.nav-links{display:flex;gap:1.8rem;list-style:none}
+.nav-links a{font-size:0.7rem;font-weight:500;letter-spacing:0.03em;text-transform:uppercase;color:var(--dim);text-decoration:none;transition:color 0.25s}
+.nav-links a:hover{color:var(--white)}
+.nav-dot{width:5px;height:5px;background:var(--pop);border-radius:50%}
+
+/* HERO — BIG STATEMENT */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 clamp(1.5rem,4vw,3.5rem) 4rem;margin-top:60px;position:relative;overflow:hidden}
+#heroCanvas{display:none}
+#fluidCanvas{display:none}
+.hero-bg{position:absolute;inset:0;overflow:hidden;z-index:0}
+.hero-fluid{display:none}
+.hero-vignette{display:none}
+.hero-dots{position:absolute;inset:0}
+.hero-dots canvas{width:100%;height:100%}
+.hero-statement,.hero-bottom{position:relative;z-index:1}
+.hero-statement{font-size:clamp(2.8rem,6.5vw,7rem);font-weight:300;line-height:1.12;letter-spacing:-0.01em;word-spacing:0.12em;max-width:1100px}
+.hero-statement strong{font-weight:800}
+.hero-statement em{font-style:italic;color:var(--pop);font-weight:400}
+.hero-statement span{display:inline-block;opacity:0;transform:translateY(40px);animation:wordIn 0.7s cubic-bezier(0.16,1,0.3,1) forwards;margin-right:0.2em}
+.hero-statement span:nth-child(1){animation-delay:0.9s}
+.hero-statement span:nth-child(2){animation-delay:0.98s}
+.hero-statement span:nth-child(3){animation-delay:1.06s}
+.hero-statement span:nth-child(4){animation-delay:1.14s}
+.hero-statement span:nth-child(5){animation-delay:1.22s}
+.hero-statement span:nth-child(6){animation-delay:1.30s}
+.hero-statement span:nth-child(7){animation-delay:1.38s}
+.hero-statement span:nth-child(8){animation-delay:1.46s}
+.hero-statement span:nth-child(9){animation-delay:1.54s}
+.hero-statement span:nth-child(10){animation-delay:1.62s}
+.hero-statement span:nth-child(11){animation-delay:1.70s}
+.hero-statement span:nth-child(12){animation-delay:1.70s}
+.hero-statement span:nth-child(13){animation-delay:1.78s}
+@keyframes wordIn{to{opacity:1;transform:translateY(0)}}
+.hero-bottom{display:flex;justify-content:space-between;align-items:flex-end;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--rule);opacity:0;animation:fi 0.6s ease forwards 2.2s}
+.hero-tag{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--dim)}
+.hero-scroll{font-size:0.65rem;font-weight:500;color:var(--off);display:flex;align-items:center;gap:0.8rem;letter-spacing:0.06em;text-transform:uppercase}
+.scroll-line{width:30px;height:1px;background:var(--off);position:relative;overflow:hidden}
+.scroll-line::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--pop);animation:scrollAnim 2s ease-in-out infinite}
+@keyframes scrollAnim{0%{left:-100%}50%{left:0}100%{left:100%}}
+
+/* HORIZONTAL WORK SCROLLER */
+.work-section{padding:6rem 0 6rem clamp(1.5rem,4vw,3.5rem);border-top:1px solid var(--rule)}
+.work-label{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--pop);margin-bottom:1rem}
+.work-title{font-size:clamp(2rem,4vw,3.5rem);font-weight:300;letter-spacing:-0.02em;margin-bottom:3rem}
+.work-title strong{font-weight:800}
+.work-track-wrapper{overflow:hidden;cursor:grab;position:relative}
+.work-track-wrapper:active{cursor:grabbing}
+.work-track{display:flex;gap:1.5rem;transition:transform 0.1s ease-out;will-change:transform;padding-right:3.5rem}
+.work-card{flex:0 0 auto;width:clamp(320px,40vw,550px);position:relative;overflow:hidden}
+.work-card-img{width:100%;aspect-ratio:3/4;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg,#111 0%,#1a1a1a 100%);transition:transform 0.6s ease}
+.card-init{font-family:var(--sans);font-size:5rem;font-weight:800;color:rgba(255,255,255,0.04);letter-spacing:-0.03em;transition:color 0.5s}
+.work-card:hover .card-init{color:rgba(255,77,45,0.08)}
+.work-card:hover .work-card-img{transform:scale(1.02)}
+.gallery-placeholder{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);padding:3rem 0;text-align:center}
+.work-card-bar{position:absolute;bottom:0;left:0;width:0;height:3px;background:var(--pop);transition:width 0.5s ease}
+.work-card:hover .work-card-bar{width:100%}
+.work-card-info{padding:1.2rem 0}
+.work-card-name{font-size:1.2rem;font-weight:700;margin-bottom:0.3rem}
+.work-card-desc{font-size:0.9rem;font-weight:300;color:var(--off);line-height:1.5}
+.work-card-type{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);margin-top:0.5rem}
+
+/* STATEMENT INTERLUDE */
+.interlude{padding:10rem clamp(1.5rem,4vw,3.5rem);position:relative;overflow:hidden}
+.interlude-text{font-size:clamp(1.8rem,4vw,3.5rem);font-weight:300;line-height:1.3;max-width:900px;letter-spacing:-0.02em}
+.interlude-text strong{font-weight:700;color:var(--white)}
+.interlude-text em{font-style:italic;color:var(--pop)}
+.interlude-bg{position:absolute;right:-5%;top:50%;transform:translateY(-50%);font-size:30vw;font-weight:900;color:rgba(255,77,45,0.03);line-height:0.8;pointer-events:none;user-select:none}
+
+/* SERVICES ACCORDION */
+.services{padding:6rem clamp(1.5rem,4vw,3.5rem);border-top:1px solid var(--rule)}
+.services-label{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--pop);margin-bottom:1rem}
+.services-title{font-size:clamp(2rem,4vw,3.5rem);font-weight:300;letter-spacing:-0.02em;margin-bottom:3rem}
+.services-title strong{font-weight:800}
+.acc-item{border-top:1px solid var(--rule);overflow:hidden}
+.acc-item:last-child{border-bottom:1px solid var(--rule)}
+.acc-header{display:flex;justify-content:space-between;align-items:center;padding:1.8rem 0;cursor:pointer;transition:padding 0.3s}
+.acc-header:hover{padding-left:0.5rem}
+.acc-header h3{font-size:clamp(1.2rem,2.5vw,1.8rem);font-weight:600;transition:color 0.3s;letter-spacing:-0.01em}
+.acc-item.open .acc-header h3{color:var(--pop)}
+.acc-toggle{width:32px;height:32px;border:1px solid var(--rule);display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--dim);transition:all 0.3s;flex-shrink:0}
+.acc-item.open .acc-toggle{background:var(--pop);border-color:var(--pop);color:var(--white);transform:rotate(45deg)}
+.acc-body{max-height:0;overflow:hidden;transition:max-height 0.5s cubic-bezier(0.16,1,0.3,1)}
+.acc-body-inner{padding:0 0 2rem;max-width:600px}
+.acc-body p{font-size:0.9rem;font-weight:300;line-height:1.8;color:var(--off)}
+
+/* CLIENTS */
+.clients{padding:5rem clamp(1.5rem,4vw,3.5rem);border-top:1px solid var(--rule)}
+.clients-label{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--dim);margin-bottom:2rem}
+.clients-flow{font-size:clamp(1.4rem,3vw,2.5rem);font-weight:300;line-height:1.6;letter-spacing:-0.01em;color:var(--dim)}
+.clients-flow span{transition:color 0.3s;cursor:default}
+.clients-flow span:hover{color:var(--white)}
+.clients-flow .sep{color:var(--pop);margin:0 0.3rem;font-weight:400}
+
+/* CONTACT */
+.contact{padding:10rem clamp(1.5rem,4vw,3.5rem) 5rem;position:relative}
+.contact h2{font-size:clamp(3.5rem,10vw,10rem);font-weight:800;line-height:0.9;letter-spacing:-0.04em;text-transform:uppercase}
+.contact h2 em{font-style:normal;color:var(--pop);display:block}
+.contact-row{display:flex;justify-content:space-between;align-items:flex-end;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--rule)}
+.contact-left p{font-size:0.92rem;font-weight:300;color:var(--off);max-width:400px;line-height:1.65;margin-bottom:2rem}
+.contact-btn{display:inline-flex;align-items:center;gap:0.8rem;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--white);background:var(--pop);padding:1rem 2.2rem;text-decoration:none;transition:all 0.3s}
+.contact-btn:hover{gap:1.2rem;filter:brightness(1.15)}
+.contact-meta{display:flex;gap:3rem}
+.cm label{display:block;font-family:var(--mono);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--dim);margin-bottom:0.25rem}
+.cm a,.cm span{font-size:0.85rem;font-weight:400;color:var(--white);text-decoration:none;transition:color 0.25s}
+.cm a:hover{color:var(--pop)}
+
+/* FOOTER */
+footer{padding:2rem clamp(1.5rem,4vw,3.5rem);display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--rule)}
+.fc{font-family:var(--mono);font-size:0.7rem;color:var(--dim)}
+.fl{display:flex;gap:1.5rem}
+.fl a{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--dim);text-decoration:none;transition:color 0.25s}
+.fl a:hover{color:var(--white)}
+
+/* REVEALS */
+.reveal{opacity:0;transform:translateY(25px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal.vis{opacity:1;transform:translateY(0)}
+
+@media(max-width:900px){
+  .cursor{display:none}
+  nav{padding:0 1.2rem}
+  .nav-links{display:none}
+  .hero{padding:0 1.2rem 3rem}
+  .hero-bottom{flex-direction:column;gap:1rem;align-items:flex-start}
+  .work-section{padding-left:1.2rem}
+  .interlude{padding:6rem 1.2rem}
+  .interlude-bg{display:none}
+  .services{padding:4rem 1.2rem}
+  .clients{padding:3rem 1.2rem}
+  .contact{padding:6rem 1.2rem 4rem}
+  .contact-row{flex-direction:column;gap:2rem;align-items:flex-start}
+  .contact-meta{flex-direction:column;gap:1.2rem}
+  footer{padding:1.5rem 1.2rem;flex-direction:column;gap:0.5rem}
+}
+
+/* WORK CARD OVERLAY */
+.work-card-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.35s ease}
+.work-card:hover .work-card-overlay{opacity:1}
+.work-card-view{font-family:var(--sans);font-size:0.72rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--white);background:var(--pop);padding:0.6rem 1.4rem;transition:transform 0.3s}
+.work-card:hover .work-card-view{transform:scale(1.02)}
+
+/* MODAL */
+.modal-backdrop{position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,0);pointer-events:none;transition:background 0.4s ease}
+.modal-backdrop.open{background:rgba(0,0,0,0.85);pointer-events:all}
+.modal-container{position:fixed;top:0;right:-100%;width:min(90vw,900px);height:100vh;z-index:9001;background:var(--bg);overflow-y:auto;transition:right 0.5s cubic-bezier(0.16,1,0.3,1);scrollbar-width:thin;scrollbar-color:var(--pop) var(--bg)}
+.modal-container::-webkit-scrollbar{width:4px}
+.modal-container::-webkit-scrollbar-track{background:var(--bg)}
+.modal-container::-webkit-scrollbar-thumb{background:var(--pop);border-radius:2px}
+.modal-container.open{right:0}
+.modal-close{position:fixed;top:1.5rem;right:1.5rem;z-index:9002;width:44px;height:44px;border:1px solid rgba(255,255,255,0.15);background:rgba(11,11,11,0.8);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.1rem;color:var(--white);opacity:0;pointer-events:none;transition:opacity 0.3s,border-color 0.3s,transform 0.3s}
+.modal-close.open{opacity:1;pointer-events:all}
+.modal-close:hover{border-color:var(--pop);transform:scale(1.05)}
+.modal-project{display:none}
+.modal-project.active{display:block}
+.modal-hero{width:100%;height:35vh;min-height:250px;background:linear-gradient(145deg,#111 0%,#1a1a1a 50%,#0f0f0f 100%)}
+.modal-body{padding:3rem clamp(2rem,5vw,4rem) 5rem}
+.modal-meta{margin-bottom:1rem}
+.modal-type{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--pop)}
+.modal-title{font-family:var(--sans);font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-0.02em;margin-bottom:1.5rem}
+.modal-desc{font-size:0.95rem;font-weight:300;line-height:1.8;color:var(--off);max-width:650px;margin-bottom:3rem}
+.modal-gallery{display:flex;flex-direction:column;gap:1.5rem}
+.modal-gallery img{width:100%;height:auto;display:block;border:1px solid var(--rule)}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<div class="loader" id="loader">
+  <span class="loader-word">Brauer Design</span>
+  <div class="loader-line"></div>
+</div>
+
+<nav>
+  <a href="#" class="nav-logo">Brauer Design</a>
+  <div class="nav-r">
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#approach">Approach</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-dot"></div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-dots"><canvas id="dotCanvas"></canvas></div>
+  </div>
+  <p class="hero-statement">
+    <span>Great </span><span>design </span><span>has </span><span><strong>always</strong> </span><span>been </span><span>about </span><span>the </span><span><em>eye.</em> </span><span>Now </span><span>the </span><span>hands </span><span>move </span><span><strong>faster.</strong></span>
+  </p>
+  <div class="hero-bottom">
+    <span class="hero-tag">Minneapolis — Est. 2008 — Design Studio</span>
+    <div class="hero-scroll"><div class="scroll-line"></div> Explore</div>
+  </div>
+</section>
+
+<!-- WORK — HORIZONTAL SCROLL -->
+<section class="work-section" id="work">
+  <p class="work-label reveal">Selected Work</p>
+  <h2 class="work-title reveal">Some of our <strong>recent work:</strong></h2>
+  <div class="work-track-wrapper" id="trackWrap">
+    <div class="work-track" id="track">
+
+      <div class="work-card" data-project="truerx" onclick="openModal('truerx')">
+        <div class="work-card-img"><span class="card-init">Tr</span>
+          <div class="work-card-bar"></div>
+          <div class="work-card-overlay"><span class="work-card-view">View Project ↗</span></div>
+        </div>
+        <div class="work-card-info">
+          <h3 class="work-card-name">True Rx</h3>
+          <p class="work-card-desc">Comprehensive brand identity, event materials, and marketing collateral for health strategists.</p>
+          <span class="work-card-type">Branding · Print · Event</span>
+        </div>
+      </div>
+
+      <div class="work-card" data-project="healthefx" onclick="openModal('healthefx')">
+        <div class="work-card-img"><span class="card-init">Hx</span>
+          <div class="work-card-bar"></div>
+          <div class="work-card-overlay"><span class="work-card-view">View Project ↗</span></div>
+        </div>
+        <div class="work-card-info">
+          <h3 class="work-card-name">Health e(fx)</h3>
+          <p class="work-card-desc">Full brand system including publications, web platform, trade show displays, and campaign materials.</p>
+          <span class="work-card-type">Branding · Digital · Print</span>
+        </div>
+      </div>
+
+      <div class="work-card" data-project="equifax" onclick="openModal('equifax')">
+        <div class="work-card-img"><span class="card-init">Eq</span>
+          <div class="work-card-bar"></div>
+          <div class="work-card-overlay"><span class="work-card-view">View Project ↗</span></div>
+        </div>
+        <div class="work-card-info">
+          <h3 class="work-card-name">Equifax Workforce Solutions</h3>
+          <p class="work-card-desc">Marketing campaigns, product collateral, social content, and sales enablement materials.</p>
+          <span class="work-card-type">Campaign · Digital · Print</span>
+        </div>
+      </div>
+
+      <div class="work-card" data-project="agile" onclick="openModal('agile')">
+        <div class="work-card-img"><span class="card-init">Af</span>
+          <div class="work-card-bar"></div>
+          <div class="work-card-overlay"><span class="work-card-view">View Project ↗</span></div>
+        </div>
+        <div class="work-card-info">
+          <h3 class="work-card-name">Agile Frameworks</h3>
+          <p class="work-card-desc">Complete rebrand including website, product illustrations, video, and digital advertising.</p>
+          <span class="work-card-type">Branding · Digital · Web</span>
+        </div>
+      </div>
+
+      <div class="work-card" data-project="insite" onclick="openModal('insite')">
+        <div class="work-card-img"><span class="card-init">Is</span>
+          <div class="work-card-bar"></div>
+          <div class="work-card-overlay"><span class="work-card-view">View Project ↗</span></div>
+        </div>
+        <div class="work-card-info">
+          <h3 class="work-card-name">Insite Software</h3>
+          <p class="work-card-desc">Infographics, data visualization, product marketing, and B2B campaign systems.</p>
+          <span class="work-card-type">Digital · Print · Infographic</span>
+        </div>
+      </div>
+
+      <div class="work-card" data-project="ehealth" onclick="openModal('ehealth')">
+        <div class="work-card-img"><span class="card-init">eH</span>
+          <div class="work-card-bar"></div>
+          <div class="work-card-overlay"><span class="work-card-view">View Project ↗</span></div>
+        </div>
+        <div class="work-card-info">
+          <h3 class="work-card-name">eHealth Technologies</h3>
+          <p class="work-card-desc">Brand refresh, product marketing, process visualization, and healthcare sales materials.</p>
+          <span class="work-card-type">Branding · Digital · Print</span>
+        </div>
+      </div>
+
+      <div class="work-card" data-project="lifetime" onclick="openModal('lifetime')">
+        <div class="work-card-img"><span class="card-init">Lt</span>
+          <div class="work-card-bar"></div>
+          <div class="work-card-overlay"><span class="work-card-view">View Project ↗</span></div>
+        </div>
+        <div class="work-card-info">
+          <h3 class="work-card-name">Life Time Academy</h3>
+          <p class="work-card-desc">Recruitment marketing, program guides, comparison tools, and branded collateral.</p>
+          <span class="work-card-type">Branding · Print · Campaign</span>
+        </div>
+      </div>
+
+      <div class="work-card" data-project="digitalriver" onclick="openModal('digitalriver')">
+        <div class="work-card-img"><span class="card-init">Dr</span>
+          <div class="work-card-bar"></div>
+          <div class="work-card-overlay"><span class="work-card-view">View Project ↗</span></div>
+        </div>
+        <div class="work-card-info">
+          <h3 class="work-card-name">Digital River</h3>
+          <p class="work-card-desc">Data-driven presentations, iconography systems, and B2B marketing campaigns.</p>
+          <span class="work-card-type">Digital · Presentation · Campaign</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- INTERLUDE -->
+<section class="interlude" id="approach">
+  <div class="interlude-bg reveal">BD</div>
+  <p class="interlude-text reveal">
+    We're a <strong>senior-level creative partner</strong> that embeds with your marketing team — <em>now accelerated by AI.</em> Sharp strategy. Polished execution. No layers between you and the work.
+  </p>
+</section>
+
+<!-- SERVICES ACCORDION -->
+<section class="services" id="services">
+  <p class="services-label reveal">How we partner</p>
+  <h2 class="services-title reveal">Capabilities that <strong>move brands forward.</strong></h2>
+
+  <div class="acc-item reveal">
+    <div class="acc-header"><h3>Brand Identity & Strategy</h3><div class="acc-toggle">+</div></div>
+    <div class="acc-body"><div class="acc-body-inner"><p>Logos, visual systems, brand architecture, and strategic foundations. We build brands from the center out — identities that are clear, flexible, and built to last across every touchpoint.</p></div></div>
+  </div>
+  <div class="acc-item reveal">
+    <div class="acc-header"><h3>Digital Design & Web</h3><div class="acc-toggle">+</div></div>
+    <div class="acc-body"><div class="acc-body-inner"><p>Websites, landing pages, UI, and digital products designed for clarity and conversion. Every screen is considered, every interaction intentional.</p></div></div>
+  </div>
+  <div class="acc-item reveal">
+    <div class="acc-header"><h3>Campaign & Marketing Systems</h3><div class="acc-toggle">+</div></div>
+    <div class="acc-body"><div class="acc-body-inner"><p>Advertising, email, social, and integrated campaign systems that carry the brand forward. Cohesive creative across every channel and moment.</p></div></div>
+  </div>
+  <div class="acc-item reveal">
+    <div class="acc-header"><h3>Presentation Design</h3><div class="acc-toggle">+</div></div>
+    <div class="acc-body"><div class="acc-body-inner"><p>Pitch decks, keynotes, and sales tools built to command attention and close. Not templates — custom-designed narratives that move rooms.</p></div></div>
+  </div>
+  <div class="acc-item reveal">
+    <div class="acc-header"><h3>Print & Collateral</h3><div class="acc-toggle">+</div></div>
+    <div class="acc-body"><div class="acc-body-inner"><p>Brochures, annual reports, packaging, signage, and environmental design. Physical materials with the same rigor and craft as everything digital.</p></div></div>
+  </div>
+  <div class="acc-item reveal">
+    <div class="acc-header"><h3>AI-Accelerated Creative</h3><div class="acc-toggle">+</div></div>
+    <div class="acc-body"><div class="acc-body-inner"><p>Rapid ideation, expanded visual exploration, and faster production cycles — using AI as a creative lever, not a crutch. Every output is curated by experienced design judgment before it reaches you.</p></div></div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section class="clients">
+  <p class="clients-label reveal">A few of our partners</p>
+  <div class="clients-flow reveal">
+    <span>True Rx</span><span class="sep">,</span>
+    <span>Health e(fx)</span><span class="sep">,</span>
+    <span>Equifax</span><span class="sep">,</span>
+    <span>Agile Frameworks</span><span class="sep">,</span>
+    <span>Digital River</span><span class="sep">,</span>
+    <span>Life Time Fitness</span><span class="sep">,</span>
+    <span>eHealth Technologies</span><span class="sep">,</span>
+    <span>Insite Software</span><span class="sep">,</span>
+    <span>St. Jude Medical</span><span class="sep">,</span>
+    <span>Best Buy</span><span class="sep">,</span>
+    <span>Red Wing Shoes</span><span class="sep">,</span>
+    <span>Virtual Radiologic</span><span class="sep">,</span>
+    <span>Verata Health</span><span class="sep">,</span>
+    <span>Agiliti</span><span class="sep">,</span>
+    <span>SotaStick Co.</span>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <h2 class="reveal">Let's<br><em>talk.</em></h2>
+  <div class="contact-row reveal">
+    <div class="contact-left">
+      <p>Got something in the works? We keep it simple — no decks, no drawn-out discovery. Just a real conversation about what you need.</p>
+      <a href="mailto:hello@brauerdesignco.com" class="contact-btn">Start a project →</a>
+    </div>
+    <div class="contact-meta">
+      <div class="cm"><label>Email</label><a href="mailto:hello@brauerdesignco.com">hello@brauerdesignco.com</a></div>
+      <div class="cm"><label>Based</label><span>Minneapolis, MN</span></div>
+      <div class="cm"><label>Connect</label><a href="https://www.linkedin.com/in/jbrauer/" target="_blank">LinkedIn ↗</a></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="fc">© 2008–2026 Brauer Design Co.</span>
+  <div class="fl">
+    <a href="https://www.linkedin.com/in/jbrauer/" target="_blank">LinkedIn</a>
+    <a href="#work">Work</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+
+<script>
+// Loader
+window.addEventListener('load',()=>{document.getElementById('loader').classList.add('go')});
+
+// Cursor follower
+const cursor=document.getElementById('cursor');
+document.addEventListener('mousemove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px'});
+document.querySelectorAll('a,.acc-header,.work-card,.contact-btn,.nav-dot').forEach(el=>{
+  el.addEventListener('mouseenter',()=>cursor.classList.add('grow'));
+  el.addEventListener('mouseleave',()=>cursor.classList.remove('grow'));
+});
+
+// Reveal
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}})},{threshold:0.06,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
+
+// Horizontal drag scroll for work
+const wrap=document.getElementById('trackWrap');
+const track=document.getElementById('track');
+let isDown=false,startX,scrollLeft;
+wrap.addEventListener('mousedown',e=>{isDown=true;wrap.style.cursor='grabbing';startX=e.pageX-wrap.offsetLeft;scrollLeft=wrap.scrollLeft});
+wrap.addEventListener('mouseleave',()=>{isDown=false;wrap.style.cursor='grab'});
+wrap.addEventListener('mouseup',()=>{isDown=false;wrap.style.cursor='grab'});
+wrap.addEventListener('mousemove',e=>{if(!isDown)return;e.preventDefault();const x=e.pageX-wrap.offsetLeft;const walk=(x-startX)*1.5;wrap.scrollLeft=scrollLeft-walk});
+// make wrapper scrollable
+wrap.style.overflowX='auto';
+wrap.style.scrollbarWidth='none';
+wrap.style.msOverflowStyle='none';
+// hide scrollbar via style injection
+const style=document.createElement('style');
+style.textContent='.work-track-wrapper::-webkit-scrollbar{display:none}';
+document.head.appendChild(style);
+
+// Accordion
+document.querySelectorAll('.acc-header').forEach(header=>{
+  header.addEventListener('click',()=>{
+    const item=header.parentElement;
+    const body=item.querySelector('.acc-body');
+    const inner=body.querySelector('.acc-body-inner');
+    const wasOpen=item.classList.contains('open');
+    // close all
+    document.querySelectorAll('.acc-item').forEach(i=>{
+      i.classList.remove('open');
+      i.querySelector('.acc-body').style.maxHeight='0';
+    });
+    // open clicked if wasn't open
+    if(!wasOpen){
+      item.classList.add('open');
+      body.style.maxHeight=inner.offsetHeight+'px';
+    }
+  });
+});
+
+// Modal
+function openModal(id){
+  document.querySelectorAll('.modal-project').forEach(p=>p.classList.remove('active'));
+  const project=document.getElementById('project-'+id);
+  if(project)project.classList.add('active');
+  document.getElementById('modalBackdrop').classList.add('open');
+  document.getElementById('modalContainer').classList.add('open');
+  document.getElementById('modalClose').classList.add('open');
+  document.getElementById('modalContainer').scrollTop=0;
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('modalBackdrop').classList.remove('open');
+  document.getElementById('modalContainer').classList.remove('open');
+  document.getElementById('modalClose').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+// Dot grid with sweeping color reveal + cursor wave distortion
+(function(){
+  const c=document.getElementById('dotCanvas');
+  const ctx=c.getContext('2d');
+  let W,H,cols,rows,t=0;
+  // Smoothed mouse position that trails behind actual cursor
+  let mx=-1000,my=-1000;
+  let smx=-1000,smy=-1000;
+  // Track recent mouse positions for wave trail
+  const trail=[];
+  const TRAIL_LEN=12;
+  const GAP=16;
+  const BASE_R=0.8;
+
+  const hero=c.closest('.hero');
+  hero.addEventListener('mousemove',function(e){
+    const rect=c.getBoundingClientRect();
+    mx=e.clientX-rect.left;
+    my=e.clientY-rect.top;
+  });
+  hero.addEventListener('mouseleave',function(){
+    mx=-1000;my=-1000;
+  });
+
+  function resize(){
+    W=c.width=c.offsetWidth;
+    H=c.height=c.offsetHeight;
+    cols=Math.ceil(W/GAP)+1;
+    rows=Math.ceil(H/GAP)+1;
+  }
+
+  function draw(){
+    t+=0.012;
+
+    // Smooth mouse follow
+    smx+=(mx-smx)*0.06;
+    smy+=(my-smy)*0.06;
+
+    // Store trail positions
+    if(mx>-500){
+      if(trail.length===0||Math.abs(trail[trail.length-1].x-smx)>8||Math.abs(trail[trail.length-1].y-smy)>8){
+        trail.push({x:smx,y:smy,t:t,strength:1});
+      }
+    }
+    // Age and remove old trail points
+    for(let i=trail.length-1;i>=0;i--){
+      trail[i].strength-=0.006;
+      if(trail[i].strength<=0) trail.splice(i,1);
+    }
+    // Cap trail length
+    while(trail.length>TRAIL_LEN) trail.shift();
+
+    ctx.clearRect(0,0,W,H);
+
+    for(let row=0;row<rows;row++){
+      for(let col=0;col<cols;col++){
+        const x=col*GAP;
+        const y=row*GAP;
+
+        // Ambient wave sources
+        const d1=Math.sqrt((x-W*0.3)**2+(y-H*0.4)**2);
+        const d2=Math.sqrt((x-W*0.8)**2+(y-H*0.7)**2);
+        const d3=Math.sqrt((x-W*0.5)**2+(y-H*0.1)**2);
+
+        const wave1=Math.sin(d1*0.008-t*2.5)*0.5+0.5;
+        const wave2=Math.sin(d2*0.006-t*1.8+1.5)*0.5+0.5;
+        const wave3=Math.sin(d3*0.01-t*3.2+3.0)*0.5+0.5;
+        const combined=(wave1*0.4+wave2*0.35+wave3*0.25);
+
+        // Mouse wave influence — each trail point emits an expanding ring
+        let mouseWave=0;
+        for(const tp of trail){
+          const dm=Math.sqrt((x-tp.x)**2+(y-tp.y)**2);
+          const age=t-tp.t;
+          const ringRadius=age*350; // ring expands outward over time
+          const ringWidth=80+age*60;
+          const distFromRing=Math.abs(dm-ringRadius);
+          if(distFromRing<ringWidth){
+            const ringStrength=(1-distFromRing/ringWidth)*tp.strength;
+            mouseWave=Math.max(mouseWave,ringStrength);
+          }
+        }
+
+        // Also add a soft proximity glow near current smoothed position
+        const dCurrent=Math.sqrt((x-smx)**2+(y-smy)**2);
+        const proxGlow=Math.max(0,1-dCurrent/120)*0.4;
+        mouseWave=Math.min(1,mouseWave+proxGlow);
+
+        // Combine
+        const total=Math.min(1,combined+mouseWave*0.8);
+        const intensity=Math.pow(total,2.5);
+
+        // Size
+        const sizeMult=0.5+total*1.3+mouseWave*1.2;
+        const r=BASE_R*sizeMult;
+
+        // Color
+        if(intensity>0.3||mouseWave>0.08){
+          const a=mouseWave>0.08
+            ?Math.min(1,mouseWave*0.9+intensity*0.2)
+            :Math.min(1,(intensity-0.3)*2.5);
+          ctx.fillStyle=`rgba(232,93,38,${a*0.75})`;
+        } else {
+          const grey=0.1+combined*0.07;
+          ctx.fillStyle=`rgba(255,255,255,${grey})`;
+        }
+
+        ctx.beginPath();
+        ctx.arc(x,y,r,0,Math.PI*2);
+        ctx.fill();
+      }
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize',resize);
+  resize();
+  draw();
+})();
+
+</script>
+
+<!-- MODAL -->
+<div class="modal-backdrop" id="modalBackdrop" onclick="closeModal()"></div>
+<div class="modal-container" id="modalContainer">
+  <div class="modal-project" id="project-truerx">
+    <div class="modal-hero"></div>
+    <div class="modal-body">
+      <div class="modal-meta">
+        <span class="modal-type">Branding · Print · Event</span>
+      </div>
+      <h2 class="modal-title">True Rx</h2>
+      <p class="modal-desc">True Rx Health Strategists needed a cohesive brand system that could flex across digital campaigns, trade show environments, event invitations, and extensive print collateral. We developed a complete visual identity and rolled it out across every touchpoint — from branded publications and sales materials to large-format booth displays and experiential event design.</p>
+      <div class="modal-gallery"><p class="gallery-placeholder">Project imagery coming soon.</p></div>
+    </div>
+  </div>
+  <div class="modal-project" id="project-healthefx">
+    <div class="modal-hero"></div>
+    <div class="modal-body">
+      <div class="modal-meta">
+        <span class="modal-type">Branding · Digital · Print</span>
+      </div>
+      <h2 class="modal-title">Health e(fx)</h2>
+      <p class="modal-desc">Health e(fx) required a brand that could communicate complex workforce intelligence solutions with clarity and confidence. We built the full identity system — from flagship publications and detailed reports to their web platform, trade show banners, and ongoing marketing campaigns that positioned them as a leader in healthcare data analytics.</p>
+      <div class="modal-gallery"><p class="gallery-placeholder">Project imagery coming soon.</p></div>
+    </div>
+  </div>
+  <div class="modal-project" id="project-equifax">
+    <div class="modal-hero"></div>
+    <div class="modal-body">
+      <div class="modal-meta">
+        <span class="modal-type">Campaign · Digital · Print</span>
+      </div>
+      <h2 class="modal-title">Equifax Workforce Solutions</h2>
+      <p class="modal-desc">Equifax Workforce Solutions needed a creative partner who could produce high-volume, on-brand marketing across their product suite. We delivered campaign systems spanning product launches, social media content, digital advertising, white papers, sales one-sheeters, and employer brand campaigns — all while maintaining strict brand governance across a massive organization.</p>
+      <div class="modal-gallery"><p class="gallery-placeholder">Project imagery coming soon.</p></div>
+    </div>
+  </div>
+  <div class="modal-project" id="project-agile">
+    <div class="modal-hero"></div>
+    <div class="modal-body">
+      <div class="modal-meta">
+        <span class="modal-type">Branding · Digital · Web</span>
+      </div>
+      <h2 class="modal-title">Agile Frameworks</h2>
+      <p class="modal-desc">Agile Frameworks was ready to evolve from a regional software company into a national brand. We led a ground-up rebrand — new identity, custom isometric product illustrations, a fully redesigned website, explainer video production, digital ad campaigns, and a complete suite of sales and marketing tools that repositioned them for growth.</p>
+      <div class="modal-gallery"><p class="gallery-placeholder">Project imagery coming soon.</p></div>
+    </div>
+  </div>
+  <div class="modal-project" id="project-insite">
+    <div class="modal-hero"></div>
+    <div class="modal-body">
+      <div class="modal-meta">
+        <span class="modal-type">Digital · Print · Infographic</span>
+      </div>
+      <h2 class="modal-title">Insite Software</h2>
+      <p class="modal-desc">Insite Software's B2B ecommerce platform needed marketing materials that could translate complex technology into compelling visual stories. We produced data-driven infographics, product architecture diagrams, webinar promotions, trade show assets, and integrated campaign materials that helped their sales team communicate value at every stage of the funnel.</p>
+      <div class="modal-gallery"><p class="gallery-placeholder">Project imagery coming soon.</p></div>
+    </div>
+  </div>
+  <div class="modal-project" id="project-ehealth">
+    <div class="modal-hero"></div>
+    <div class="modal-body">
+      <div class="modal-meta">
+        <span class="modal-type">Branding · Digital · Print</span>
+      </div>
+      <h2 class="modal-title">eHealth Technologies</h2>
+      <p class="modal-desc">eHealth Technologies connects healthcare systems through medical record retrieval and clinical data exchange. We refreshed their brand identity and built a marketing system that visualizes complex clinical workflows — from referral to care plan — through clean iconography, process diagrams, product collateral, and sales-ready materials for their hospital-facing teams.</p>
+      <div class="modal-gallery"><p class="gallery-placeholder">Project imagery coming soon.</p></div>
+    </div>
+  </div>
+  <div class="modal-project" id="project-lifetime">
+    <div class="modal-hero"></div>
+    <div class="modal-body">
+      <div class="modal-meta">
+        <span class="modal-type">Branding · Print · Campaign</span>
+      </div>
+      <h2 class="modal-title">Life Time Academy</h2>
+      <p class="modal-desc">Life Time Academy needed to recruit aspiring fitness professionals into their premier training program. We created a high-energy brand extension with career guides, program comparison infographics, recruitment posters, digital collateral, and a complete marketing toolkit that positioned the Academy as the gold standard in fitness education.</p>
+      <div class="modal-gallery"><p class="gallery-placeholder">Project imagery coming soon.</p></div>
+    </div>
+  </div>
+  <div class="modal-project" id="project-digitalriver">
+    <div class="modal-hero"></div>
+    <div class="modal-body">
+      <div class="modal-meta">
+        <span class="modal-type">Digital · Presentation · Campaign</span>
+      </div>
+      <h2 class="modal-title">Digital River</h2>
+      <p class="modal-desc">Digital River is a global ecommerce solutions provider that needed sophisticated visual storytelling for complex B2B topics. We designed data-rich presentations, custom iconography systems, motion graphics concepts, and campaign materials that turned dense commerce data into clear, compelling narratives for their enterprise audience.</p>
+      <div class="modal-gallery"><p class="gallery-placeholder">Project imagery coming soon.</p></div>
+    </div>
+  </div>
+
+</div>
+<div class="modal-close" id="modalClose" onclick="closeModal()">✕</div>
+
+</body>
+</html>
