@@ -117,8 +117,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 clamp(1.5rem,4vw,3
 .acc-header:hover{padding-left:0.5rem}
 .acc-header h3{font-size:clamp(1.2rem,2.5vw,1.8rem);font-weight:600;transition:color 0.3s;letter-spacing:-0.01em}
 .acc-item.open .acc-header h3{color:var(--pop)}
-.acc-toggle{width:36px;height:36px;border:1.5px solid var(--dim);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;line-height:1;color:var(--dim);transition:border-color 0.35s ease,color 0.35s ease;flex-shrink:0;background:transparent}
-.acc-toggle span{display:flex;align-items:center;justify-content:center;width:100%;height:100%;transition:transform 0.35s ease}
+.acc-toggle{width:36px;height:36px;border:1.5px solid var(--dim);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--dim);transition:border-color 0.35s ease,color 0.35s ease;flex-shrink:0;background:transparent;position:relative}
+.acc-toggle span{display:block;width:14px;height:14px;position:relative;transition:transform 0.35s ease}
+.acc-toggle span::before,.acc-toggle span::after{content:'';position:absolute;background:currentColor;top:50%;left:50%;transform:translate(-50%,-50%)}
+.acc-toggle span::before{width:14px;height:1.5px}
+.acc-toggle span::after{width:1.5px;height:14px}
 .acc-item.open .acc-toggle{border-color:var(--pop);color:var(--pop);background:transparent}
 .acc-item.open .acc-toggle span{transform:rotate(45deg)}
 .acc-body{max-height:0;overflow:hidden;transition:max-height 0.5s cubic-bezier(0.16,1,0.3,1)}
@@ -345,27 +348,27 @@ footer{padding:2rem clamp(1.5rem,4vw,3.5rem);display:flex;justify-content:space-
   <h2 class="services-title reveal">Capabilities that <strong>move brands forward.</strong></h2>
 
   <div class="acc-item reveal">
-    <div class="acc-header"><h3>Brand Identity & Strategy</h3><div class="acc-toggle"><span>+</span></div></div>
+    <div class="acc-header"><h3>Brand Identity & Strategy</h3><div class="acc-toggle"><span></span></div></div>
     <div class="acc-body"><div class="acc-body-inner"><p>Logos, visual systems, brand architecture, and strategic foundations. We build brands from the center out — identities that are clear, flexible, and built to last across every touchpoint.</p></div></div>
   </div>
   <div class="acc-item reveal">
-    <div class="acc-header"><h3>Digital Design & Web</h3><div class="acc-toggle"><span>+</span></div></div>
+    <div class="acc-header"><h3>Digital Design & Web</h3><div class="acc-toggle"><span></span></div></div>
     <div class="acc-body"><div class="acc-body-inner"><p>Websites, landing pages, UI, and digital products designed for clarity and conversion. Every screen is considered, every interaction intentional.</p></div></div>
   </div>
   <div class="acc-item reveal">
-    <div class="acc-header"><h3>Campaign & Marketing Systems</h3><div class="acc-toggle"><span>+</span></div></div>
+    <div class="acc-header"><h3>Campaign & Marketing Systems</h3><div class="acc-toggle"><span></span></div></div>
     <div class="acc-body"><div class="acc-body-inner"><p>Advertising, email, social, and integrated campaign systems that carry the brand forward. Cohesive creative across every channel and moment.</p></div></div>
   </div>
   <div class="acc-item reveal">
-    <div class="acc-header"><h3>Presentation Design</h3><div class="acc-toggle"><span>+</span></div></div>
+    <div class="acc-header"><h3>Presentation Design</h3><div class="acc-toggle"><span></span></div></div>
     <div class="acc-body"><div class="acc-body-inner"><p>Pitch decks, keynotes, and sales tools built to command attention and close. Not templates — custom-designed narratives that move rooms.</p></div></div>
   </div>
   <div class="acc-item reveal">
-    <div class="acc-header"><h3>Print & Collateral</h3><div class="acc-toggle"><span>+</span></div></div>
+    <div class="acc-header"><h3>Print & Collateral</h3><div class="acc-toggle"><span></span></div></div>
     <div class="acc-body"><div class="acc-body-inner"><p>Brochures, annual reports, packaging, signage, and environmental design. Physical materials with the same rigor and craft as everything digital.</p></div></div>
   </div>
   <div class="acc-item reveal">
-    <div class="acc-header"><h3>AI-Accelerated Creative</h3><div class="acc-toggle"><span>+</span></div></div>
+    <div class="acc-header"><h3>AI-Accelerated Creative</h3><div class="acc-toggle"><span></span></div></div>
     <div class="acc-body"><div class="acc-body-inner"><p>Rapid ideation, expanded visual exploration, and faster production cycles — using AI as a creative lever, not a crutch. Every output is curated by experienced design judgment before it reaches you.</p></div></div>
   </div>
 </section>
