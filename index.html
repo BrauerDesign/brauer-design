@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Brauer Design — Creative Studio, Minneapolis</title>
+<title>Brauer Design — Creative Studio, Minnesota</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -24,14 +24,13 @@ body{background:var(--bg);color:var(--white);font-family:var(--sans);-webkit-fon
 ::selection{background:var(--pop);color:var(--white)}
 
 /* CURSOR FOLLOWER */
-.cursor{position:fixed;width:12px;height:12px;border:1.5px solid var(--pop);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width 0.3s,height 0.3s,border-color 0.3s;mix-blend-mode:difference}
-.cursor.grow{width:50px;height:50px;border-color:var(--white)}
+
 
 /* LOADER */
 .loader{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem}
 .loader.go{animation:loaderOut 0.8s ease 0.6s forwards}
 @keyframes loaderOut{to{clip-path:inset(0 0 100% 0);opacity:0;visibility:hidden;pointer-events:none}}
-.loader-word{font-size:clamp(2rem,5vw,4rem);font-weight:800;letter-spacing:-0.03em;opacity:0;transform:translateY(20px);animation:fi 0.5s ease forwards 0.1s}
+.loader-word{font-size:0.9rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;opacity:0;transform:translateY(20px);animation:fi 0.5s ease forwards 0.1s}
 .loader-line{width:40px;height:2px;background:var(--pop);opacity:0;animation:fi 0.4s ease forwards 0.3s}
 @keyframes fi{to{opacity:1;transform:translateY(0)}}
 
@@ -45,7 +44,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 clamp(1.5rem,4vw,3
 .nav-dot{width:5px;height:5px;background:var(--pop);border-radius:50%}
 
 /* HERO — BIG STATEMENT */
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 clamp(1.5rem,4vw,3.5rem) 4rem;margin-top:60px;position:relative;overflow:hidden}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 clamp(1.5rem,4vw,3.5rem) 200px;margin-top:60px;position:relative;overflow:hidden}
 #heroCanvas{display:none}
 #fluidCanvas{display:none}
 .hero-bg{position:absolute;inset:0;overflow:hidden;z-index:0}
@@ -81,7 +80,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 clamp(1.5rem,4vw,3
 
 /* HORIZONTAL WORK SCROLLER */
 .work-section{padding:6rem 0 6rem clamp(1.5rem,4vw,3.5rem);border-top:1px solid var(--rule)}
-.work-label{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--pop);margin-bottom:1rem}
+.work-label{font-family:var(--mono);font-size:0.85rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--pop);margin-bottom:1rem}
 .work-title{font-size:clamp(2rem,4vw,3.5rem);font-weight:300;letter-spacing:-0.02em;margin-bottom:3rem}
 .work-title strong{font-weight:800}
 .work-track-wrapper{overflow:hidden;cursor:grab;position:relative}
@@ -97,7 +96,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 clamp(1.5rem,4vw,3
 .work-card:hover .work-card-bar{width:100%}
 .work-card-info{padding:1.2rem 0}
 .work-card-name{font-size:1.2rem;font-weight:700;margin-bottom:0.3rem}
-.work-card-desc{font-size:0.9rem;font-weight:300;color:var(--off);line-height:1.5}
+.work-card-desc{font-size:1.1rem;font-weight:300;color:var(--off);line-height:1.6}
 .work-card-type{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);margin-top:0.5rem}
 
 /* STATEMENT INTERLUDE */
@@ -109,7 +108,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 clamp(1.5rem,4vw,3
 
 /* SERVICES ACCORDION */
 .services{padding:6rem clamp(1.5rem,4vw,3.5rem);border-top:1px solid var(--rule)}
-.services-label{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--pop);margin-bottom:1rem}
+.services-label{font-family:var(--mono);font-size:0.85rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--pop);margin-bottom:1rem}
 .services-title{font-size:clamp(2rem,4vw,3.5rem);font-weight:300;letter-spacing:-0.02em;margin-bottom:3rem}
 .services-title strong{font-weight:800}
 .acc-item{border-top:1px solid var(--rule);overflow:hidden}
@@ -118,18 +117,21 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 clamp(1.5rem,4vw,3
 .acc-header:hover{padding-left:0.5rem}
 .acc-header h3{font-size:clamp(1.2rem,2.5vw,1.8rem);font-weight:600;transition:color 0.3s;letter-spacing:-0.01em}
 .acc-item.open .acc-header h3{color:var(--pop)}
-.acc-toggle{width:32px;height:32px;border:1px solid var(--rule);display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--dim);transition:all 0.3s;flex-shrink:0}
-.acc-item.open .acc-toggle{background:var(--pop);border-color:var(--pop);color:var(--white);transform:rotate(45deg)}
+.acc-toggle{width:36px;height:36px;border:1.5px solid var(--dim);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;line-height:1;color:var(--dim);transition:border-color 0.35s ease,color 0.35s ease;flex-shrink:0;background:transparent}
+.acc-toggle span{display:flex;align-items:center;justify-content:center;width:100%;height:100%;transition:transform 0.35s ease}
+.acc-item.open .acc-toggle{border-color:var(--pop);color:var(--pop);background:transparent}
+.acc-item.open .acc-toggle span{transform:rotate(45deg)}
 .acc-body{max-height:0;overflow:hidden;transition:max-height 0.5s cubic-bezier(0.16,1,0.3,1)}
 .acc-body-inner{padding:0 0 2rem;max-width:600px}
-.acc-body p{font-size:0.9rem;font-weight:300;line-height:1.8;color:var(--off)}
+.acc-body p{font-size:1.1rem;font-weight:300;line-height:1.8;color:var(--off)}
 
 /* CLIENTS */
 .clients{padding:5rem clamp(1.5rem,4vw,3.5rem);border-top:1px solid var(--rule)}
-.clients-label{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--dim);margin-bottom:2rem}
+.clients-label{font-family:var(--mono);font-size:0.85rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--dim);margin-bottom:2rem}
 .clients-flow{font-size:clamp(1.4rem,3vw,2.5rem);font-weight:300;line-height:1.6;letter-spacing:-0.01em;color:var(--dim)}
 .clients-flow span{transition:color 0.3s;cursor:default}
-.clients-flow span:hover{color:var(--white)}
+.clients-flow a span{cursor:pointer}
+.clients-flow a:hover span{color:var(--white)}
 .clients-flow .sep{color:var(--pop);margin:0 0.3rem;font-weight:400}
 
 /* CONTACT */
@@ -137,12 +139,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 clamp(1.5rem,4vw,3
 .contact h2{font-size:clamp(3.5rem,10vw,10rem);font-weight:800;line-height:0.9;letter-spacing:-0.04em;text-transform:uppercase}
 .contact h2 em{font-style:normal;color:var(--pop);display:block}
 .contact-row{display:flex;justify-content:space-between;align-items:flex-end;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--rule)}
-.contact-left p{font-size:0.92rem;font-weight:300;color:var(--off);max-width:400px;line-height:1.65;margin-bottom:2rem}
+.contact-left p{font-size:1.12rem;font-weight:300;color:var(--off);max-width:420px;line-height:1.75;margin-bottom:2rem}
 .contact-btn{display:inline-flex;align-items:center;gap:0.8rem;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--white);background:var(--pop);padding:1rem 2.2rem;text-decoration:none;transition:all 0.3s}
 .contact-btn:hover{gap:1.2rem;filter:brightness(1.15)}
 .contact-meta{display:flex;gap:3rem}
 .cm label{display:block;font-family:var(--mono);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--dim);margin-bottom:0.25rem}
-.cm a,.cm span{font-size:0.85rem;font-weight:400;color:var(--white);text-decoration:none;transition:color 0.25s}
+.cm a,.cm span{font-size:1.05rem;font-weight:400;color:var(--white);text-decoration:none;transition:color 0.25s}
 .cm a:hover{color:var(--pop)}
 
 /* FOOTER */
@@ -157,7 +159,6 @@ footer{padding:2rem clamp(1.5rem,4vw,3.5rem);display:flex;justify-content:space-
 .reveal.vis{opacity:1;transform:translateY(0)}
 
 @media(max-width:900px){
-  .cursor{display:none}
   nav{padding:0 1.2rem}
   .nav-links{display:none}
   .hero{padding:0 1.2rem 3rem}
@@ -197,14 +198,13 @@ footer{padding:2rem clamp(1.5rem,4vw,3.5rem);display:flex;justify-content:space-
 .modal-meta{margin-bottom:1rem}
 .modal-type{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--pop)}
 .modal-title{font-family:var(--sans);font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-0.02em;margin-bottom:1.5rem}
-.modal-desc{font-size:0.95rem;font-weight:300;line-height:1.8;color:var(--off);max-width:650px;margin-bottom:3rem}
+.modal-desc{font-size:1.15rem;font-weight:300;line-height:1.8;color:var(--off);max-width:650px;margin-bottom:3rem}
 .modal-gallery{display:flex;flex-direction:column;gap:1.5rem}
 .modal-gallery img{width:100%;height:auto;display:block;border:1px solid var(--rule)}
 </style>
 </head>
 <body>
 
-<div class="cursor" id="cursor"></div>
 
 <div class="loader" id="loader">
   <span class="loader-word">Brauer Design</span>
@@ -232,16 +232,17 @@ footer{padding:2rem clamp(1.5rem,4vw,3.5rem);display:flex;justify-content:space-
   <p class="hero-statement">
     <span>Great </span><span>design </span><span>has </span><span><strong>always</strong> </span><span>been </span><span>about </span><span>the </span><span><em>eye.</em> </span><span>Now </span><span>the </span><span>hands </span><span>move </span><span><strong>faster.</strong></span>
   </p>
-  <div class="hero-bottom">
-    <span class="hero-tag">Minneapolis — Est. 2008 — Design Studio</span>
-    <div class="hero-scroll"><div class="scroll-line"></div> Explore</div>
-  </div>
 </section>
 
 <!-- WORK — HORIZONTAL SCROLL -->
 <section class="work-section" id="work">
-  <p class="work-label reveal">Selected Work</p>
-  <h2 class="work-title reveal">Some of our <strong>recent work:</strong></h2>
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem;padding-right:clamp(1.5rem,4vw,3.5rem)" class="reveal">
+    <div>
+      <p class="work-label">Selected Work</p>
+      <h2 class="work-title" style="margin-bottom:0">Some of our <strong>recent work:</strong></h2>
+    </div>
+    <div class="hero-scroll" style="margin-bottom:20px"><div class="scroll-line"></div> Explore</div>
+  </div>
   <div class="work-track-wrapper" id="trackWrap">
     <div class="work-track" id="track">
 
@@ -253,31 +254,6 @@ footer{padding:2rem clamp(1.5rem,4vw,3.5rem);display:flex;justify-content:space-
         <div class="work-card-info">
           <h3 class="work-card-name">True Rx</h3>
           <p class="work-card-desc">Comprehensive brand identity, event materials, and marketing collateral for health strategists.</p>
-          <span class="work-card-type">Branding · Print · Event</span>
-        </div>
-      </div>
-
-      <div class="work-card" data-project="healthefx" onclick="openModal('healthefx')">
-        <div class="work-card-img"><span class="card-init">Hx</span>
-          <div class="work-card-bar"></div>
-          <div class="work-card-overlay"><span class="work-card-view">View Project ↗</span></div>
-        </div>
-        <div class="work-card-info">
-          <h3 class="work-card-name">Health e(fx)</h3>
-          <p class="work-card-desc">Full brand system including publications, web platform, trade show displays, and campaign materials.</p>
-          <span class="work-card-type">Branding · Digital · Print</span>
-        </div>
-      </div>
-
-      <div class="work-card" data-project="equifax" onclick="openModal('equifax')">
-        <div class="work-card-img"><span class="card-init">Eq</span>
-          <div class="work-card-bar"></div>
-          <div class="work-card-overlay"><span class="work-card-view">View Project ↗</span></div>
-        </div>
-        <div class="work-card-info">
-          <h3 class="work-card-name">Equifax Workforce Solutions</h3>
-          <p class="work-card-desc">Marketing campaigns, product collateral, social content, and sales enablement materials.</p>
-          <span class="work-card-type">Campaign · Digital · Print</span>
         </div>
       </div>
 
@@ -289,7 +265,17 @@ footer{padding:2rem clamp(1.5rem,4vw,3.5rem);display:flex;justify-content:space-
         <div class="work-card-info">
           <h3 class="work-card-name">Agile Frameworks</h3>
           <p class="work-card-desc">Complete rebrand including website, product illustrations, video, and digital advertising.</p>
-          <span class="work-card-type">Branding · Digital · Web</span>
+        </div>
+      </div>
+
+      <div class="work-card" data-project="equifax" onclick="openModal('equifax')">
+        <div class="work-card-img"><span class="card-init">Eq</span>
+          <div class="work-card-bar"></div>
+          <div class="work-card-overlay"><span class="work-card-view">View Project ↗</span></div>
+        </div>
+        <div class="work-card-info">
+          <h3 class="work-card-name">Equifax Workforce Solutions</h3>
+          <p class="work-card-desc">Marketing campaigns, product collateral, social content, and sales enablement materials.</p>
         </div>
       </div>
 
@@ -301,7 +287,6 @@ footer{padding:2rem clamp(1.5rem,4vw,3.5rem);display:flex;justify-content:space-
         <div class="work-card-info">
           <h3 class="work-card-name">Insite Software</h3>
           <p class="work-card-desc">Infographics, data visualization, product marketing, and B2B campaign systems.</p>
-          <span class="work-card-type">Digital · Print · Infographic</span>
         </div>
       </div>
 
@@ -313,19 +298,6 @@ footer{padding:2rem clamp(1.5rem,4vw,3.5rem);display:flex;justify-content:space-
         <div class="work-card-info">
           <h3 class="work-card-name">eHealth Technologies</h3>
           <p class="work-card-desc">Brand refresh, product marketing, process visualization, and healthcare sales materials.</p>
-          <span class="work-card-type">Branding · Digital · Print</span>
-        </div>
-      </div>
-
-      <div class="work-card" data-project="lifetime" onclick="openModal('lifetime')">
-        <div class="work-card-img"><span class="card-init">Lt</span>
-          <div class="work-card-bar"></div>
-          <div class="work-card-overlay"><span class="work-card-view">View Project ↗</span></div>
-        </div>
-        <div class="work-card-info">
-          <h3 class="work-card-name">Life Time Academy</h3>
-          <p class="work-card-desc">Recruitment marketing, program guides, comparison tools, and branded collateral.</p>
-          <span class="work-card-type">Branding · Print · Campaign</span>
         </div>
       </div>
 
@@ -337,7 +309,6 @@ footer{padding:2rem clamp(1.5rem,4vw,3.5rem);display:flex;justify-content:space-
         <div class="work-card-info">
           <h3 class="work-card-name">Digital River</h3>
           <p class="work-card-desc">Data-driven presentations, iconography systems, and B2B marketing campaigns.</p>
-          <span class="work-card-type">Digital · Presentation · Campaign</span>
         </div>
       </div>
 
@@ -359,39 +330,38 @@ footer{padding:2rem clamp(1.5rem,4vw,3.5rem);display:flex;justify-content:space-
   <h2 class="services-title reveal">Capabilities that <strong>move brands forward.</strong></h2>
 
   <div class="acc-item reveal">
-    <div class="acc-header"><h3>Brand Identity & Strategy</h3><div class="acc-toggle">+</div></div>
+    <div class="acc-header"><h3>Brand Identity & Strategy</h3><div class="acc-toggle"><span>+</span></div></div>
     <div class="acc-body"><div class="acc-body-inner"><p>Logos, visual systems, brand architecture, and strategic foundations. We build brands from the center out — identities that are clear, flexible, and built to last across every touchpoint.</p></div></div>
   </div>
   <div class="acc-item reveal">
-    <div class="acc-header"><h3>Digital Design & Web</h3><div class="acc-toggle">+</div></div>
+    <div class="acc-header"><h3>Digital Design & Web</h3><div class="acc-toggle"><span>+</span></div></div>
     <div class="acc-body"><div class="acc-body-inner"><p>Websites, landing pages, UI, and digital products designed for clarity and conversion. Every screen is considered, every interaction intentional.</p></div></div>
   </div>
   <div class="acc-item reveal">
-    <div class="acc-header"><h3>Campaign & Marketing Systems</h3><div class="acc-toggle">+</div></div>
+    <div class="acc-header"><h3>Campaign & Marketing Systems</h3><div class="acc-toggle"><span>+</span></div></div>
     <div class="acc-body"><div class="acc-body-inner"><p>Advertising, email, social, and integrated campaign systems that carry the brand forward. Cohesive creative across every channel and moment.</p></div></div>
   </div>
   <div class="acc-item reveal">
-    <div class="acc-header"><h3>Presentation Design</h3><div class="acc-toggle">+</div></div>
+    <div class="acc-header"><h3>Presentation Design</h3><div class="acc-toggle"><span>+</span></div></div>
     <div class="acc-body"><div class="acc-body-inner"><p>Pitch decks, keynotes, and sales tools built to command attention and close. Not templates — custom-designed narratives that move rooms.</p></div></div>
   </div>
   <div class="acc-item reveal">
-    <div class="acc-header"><h3>Print & Collateral</h3><div class="acc-toggle">+</div></div>
+    <div class="acc-header"><h3>Print & Collateral</h3><div class="acc-toggle"><span>+</span></div></div>
     <div class="acc-body"><div class="acc-body-inner"><p>Brochures, annual reports, packaging, signage, and environmental design. Physical materials with the same rigor and craft as everything digital.</p></div></div>
   </div>
   <div class="acc-item reveal">
-    <div class="acc-header"><h3>AI-Accelerated Creative</h3><div class="acc-toggle">+</div></div>
+    <div class="acc-header"><h3>AI-Accelerated Creative</h3><div class="acc-toggle"><span>+</span></div></div>
     <div class="acc-body"><div class="acc-body-inner"><p>Rapid ideation, expanded visual exploration, and faster production cycles — using AI as a creative lever, not a crutch. Every output is curated by experienced design judgment before it reaches you.</p></div></div>
   </div>
 </section>
 
 <!-- CLIENTS -->
 <section class="clients">
-  <p class="clients-label reveal">A few of our partners</p>
+  <p class="clients-label reveal">Select Partners</p>
   <div class="clients-flow reveal">
-    <span>True Rx</span><span class="sep">,</span>
-    <span>Health e(fx)</span><span class="sep">,</span>
-    <span>Equifax</span><span class="sep">,</span>
-    <span>Agile Frameworks</span><span class="sep">,</span>
+    <a href="https://www.truerx.com" target="_blank" style="text-decoration:none;color:inherit"><span>True Rx</span></a><span class="sep">,</span>
+    <a href="https://workforce.equifax.com/" target="_blank" style="text-decoration:none;color:inherit"><span>Equifax</span></a><span class="sep">,</span>
+    <a href="https://www.agileframeworks.com/" target="_blank" style="text-decoration:none;color:inherit"><span>Agile Frameworks</span></a><span class="sep">,</span>
     <span>Digital River</span><span class="sep">,</span>
     <span>Life Time Fitness</span><span class="sep">,</span>
     <span>eHealth Technologies</span><span class="sep">,</span>
@@ -412,18 +382,17 @@ footer{padding:2rem clamp(1.5rem,4vw,3.5rem);display:flex;justify-content:space-
   <div class="contact-row reveal">
     <div class="contact-left">
       <p>Got something in the works? We keep it simple — no decks, no drawn-out discovery. Just a real conversation about what you need.</p>
-      <a href="mailto:hello@brauerdesignco.com" class="contact-btn">Start a project →</a>
+      <a href="mailto:jason@brauerdesignco.com" class="contact-btn">Start a project →</a>
     </div>
     <div class="contact-meta">
-      <div class="cm"><label>Email</label><a href="mailto:hello@brauerdesignco.com">hello@brauerdesignco.com</a></div>
-      <div class="cm"><label>Based</label><span>Minneapolis, MN</span></div>
+      <div class="cm"><label>Based</label><span>The Northland</span></div>
       <div class="cm"><label>Connect</label><a href="https://www.linkedin.com/in/jbrauer/" target="_blank">LinkedIn ↗</a></div>
     </div>
   </div>
 </section>
 
 <footer>
-  <span class="fc">© 2008–2026 Brauer Design Co.</span>
+  <span class="fc">© 2008–2026 Brauer Design Co. All Rights Reserved.</span>
   <div class="fl">
     <a href="https://www.linkedin.com/in/jbrauer/" target="_blank">LinkedIn</a>
     <a href="#work">Work</a>
@@ -434,14 +403,6 @@ footer{padding:2rem clamp(1.5rem,4vw,3.5rem);display:flex;justify-content:space-
 <script>
 // Loader
 window.addEventListener('load',()=>{document.getElementById('loader').classList.add('go')});
-
-// Cursor follower
-const cursor=document.getElementById('cursor');
-document.addEventListener('mousemove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px'});
-document.querySelectorAll('a,.acc-header,.work-card,.contact-btn,.nav-dot').forEach(el=>{
-  el.addEventListener('mouseenter',()=>cursor.classList.add('grow'));
-  el.addEventListener('mouseleave',()=>cursor.classList.remove('grow'));
-});
 
 // Reveal
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}})},{threshold:0.06,rootMargin:'0px 0px -30px 0px'});
@@ -516,8 +477,8 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
   // Track recent mouse positions for wave trail
   const trail=[];
   const TRAIL_LEN=12;
-  const GAP=16;
-  const BASE_R=0.8;
+  const GAP=10;
+  const BASE_R=0.5;
 
   const hero=c.closest('.hero');
   hero.addEventListener('mousemove',function(e){
@@ -536,7 +497,11 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
     rows=Math.ceil(H/GAP)+1;
   }
 
-  function draw(){
+  let lastFrame=0;
+  function draw(now){
+    requestAnimationFrame(draw);
+    if(now-lastFrame<33) return;
+    lastFrame=now;
     t+=0.012;
 
     // Smooth mouse follow
@@ -618,7 +583,6 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
       }
     }
 
-    requestAnimationFrame(draw);
   }
 
   window.addEventListener('resize',resize);
@@ -639,17 +603,6 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
       </div>
       <h2 class="modal-title">True Rx</h2>
       <p class="modal-desc">True Rx Health Strategists needed a cohesive brand system that could flex across digital campaigns, trade show environments, event invitations, and extensive print collateral. We developed a complete visual identity and rolled it out across every touchpoint — from branded publications and sales materials to large-format booth displays and experiential event design.</p>
-      <div class="modal-gallery"><p class="gallery-placeholder">Project imagery coming soon.</p></div>
-    </div>
-  </div>
-  <div class="modal-project" id="project-healthefx">
-    <div class="modal-hero"></div>
-    <div class="modal-body">
-      <div class="modal-meta">
-        <span class="modal-type">Branding · Digital · Print</span>
-      </div>
-      <h2 class="modal-title">Health e(fx)</h2>
-      <p class="modal-desc">Health e(fx) required a brand that could communicate complex workforce intelligence solutions with clarity and confidence. We built the full identity system — from flagship publications and detailed reports to their web platform, trade show banners, and ongoing marketing campaigns that positioned them as a leader in healthcare data analytics.</p>
       <div class="modal-gallery"><p class="gallery-placeholder">Project imagery coming soon.</p></div>
     </div>
   </div>
@@ -697,17 +650,6 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
       <div class="modal-gallery"><p class="gallery-placeholder">Project imagery coming soon.</p></div>
     </div>
   </div>
-  <div class="modal-project" id="project-lifetime">
-    <div class="modal-hero"></div>
-    <div class="modal-body">
-      <div class="modal-meta">
-        <span class="modal-type">Branding · Print · Campaign</span>
-      </div>
-      <h2 class="modal-title">Life Time Academy</h2>
-      <p class="modal-desc">Life Time Academy needed to recruit aspiring fitness professionals into their premier training program. We created a high-energy brand extension with career guides, program comparison infographics, recruitment posters, digital collateral, and a complete marketing toolkit that positioned the Academy as the gold standard in fitness education.</p>
-      <div class="modal-gallery"><p class="gallery-placeholder">Project imagery coming soon.</p></div>
-    </div>
-  </div>
   <div class="modal-project" id="project-digitalriver">
     <div class="modal-hero"></div>
     <div class="modal-body">
@@ -715,13 +657,4 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
         <span class="modal-type">Digital · Presentation · Campaign</span>
       </div>
       <h2 class="modal-title">Digital River</h2>
-      <p class="modal-desc">Digital River is a global ecommerce solutions provider that needed sophisticated visual storytelling for complex B2B topics. We designed data-rich presentations, custom iconography systems, motion graphics concepts, and campaign materials that turned dense commerce data into clear, compelling narratives for their enterprise audience.</p>
-      <div class="modal-gallery"><p class="gallery-placeholder">Project imagery coming soon.</p></div>
-    </div>
-  </div>
-
-</div>
-<div class="modal-close" id="modalClose" onclick="closeModal()">✕</div>
-
-</body>
-</html>
+      <p class="modal-desc">Digital River is a global ecommerce solutions provider that needed sophisticated visual storytelling for complex B2B topics. We designed data-rich presentations, custom iconography systems, motion graphics concepts, and campaign materials that turned dense comme
